@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import de.vayion.rpgcore.RPGCore;
 import de.vayion.rpgcore.stats.StatContainer;
 
-public class Faction {
+public class Faction extends StatContainer {
     private HashSet<Player> players;
     private String name;
     private StatContainer modifiers;
