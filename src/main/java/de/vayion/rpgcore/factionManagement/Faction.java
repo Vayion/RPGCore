@@ -10,18 +10,16 @@ import de.vayion.rpgcore.stats.StatContainer;
 public class Faction extends StatContainer {
     private HashSet<Player> players;
     private String name;
-    private StatContainer modifiers;
     private RPGCore main;
 
     public Faction(RPGCore main, String name) {
         this.main = main;
         this.name = name;
+        players = new HashSet<>();
     }
 
     public void addPlayer(Player player) {
         players.add(player);
-
-
     }
 
     public String getName() {

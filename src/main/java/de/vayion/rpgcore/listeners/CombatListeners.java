@@ -18,7 +18,7 @@ public class CombatListeners implements Listener{
     }
 
     @EventHandler
-    public void DamageEvent(EntityDamageByEntityEvent event) {
+    public void damageEvent(EntityDamageByEntityEvent event) {
         event.setDamage(0D);
         EntityWrapper damager;
         if(event.getDamager() instanceof LivingEntity) {

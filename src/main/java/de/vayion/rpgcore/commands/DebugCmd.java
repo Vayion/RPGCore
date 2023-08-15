@@ -11,16 +11,17 @@ import org.bukkit.entity.Player;
 
 import de.vayion.rpgcore.RPGCore;
 import de.vayion.rpgcore.entityManagement.EntityWrapper;
+import org.jetbrains.annotations.NotNull;
 
 public class DebugCmd implements CommandExecutor {
-    private RPGCore main;
+    private final RPGCore main;
 
     public DebugCmd(RPGCore main) {
         this.main = main;
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command arg1, String arg2, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command arg1, @NotNull String arg2, String[] args) {
         if(sender instanceof Player) {
             Player player = (Player) sender;
             if(!player.hasPermission("rpg.admin")) {player.sendMessage(arg1.getPermissionMessage());}
