@@ -2,6 +2,8 @@ package de.vayion.rpgcore.commands;
 
 import java.util.IllegalFormatException;
 
+import de.vayion.rpgcore.items.CustomItem;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -79,6 +81,14 @@ public class DebugCmd implements CommandExecutor {
                     zombieWrap.setArmor(20);
                     main.getEntityContainer().add(zombieWrap);
                     break;
+                case "debugsword":
+                    CustomItem item = new CustomItem("End Sword", "Eza, hop onto this project ong skibidi", Material.DIAMOND_SWORD);
+                    item.setDamage(100);
+                    item.setPiercing(50);
+                    item.setDefense(30);
+                    item.generateItem();
+                    player.getInventory().addItem(item.getItem());
+                    player.updateInventory();
                 default:
             }
         }
