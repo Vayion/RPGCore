@@ -51,6 +51,8 @@ public class CustomItem extends StatContainer {
         stats.forEach((t, i) -> lore.add(ChatColor.RESET+t.toString()+": "+i));
         meta.setLore(lore);
         item.setItemMeta(meta);
+
+
     }
 
 
