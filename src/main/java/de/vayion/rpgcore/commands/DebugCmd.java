@@ -86,8 +86,14 @@ public class DebugCmd implements CommandExecutor {
                     item.setDamage(100);
                     item.setPiercing(50);
                     item.setDefense(30);
-                    item.generateItem();
+                    item.generateItem(5);
                     player.getInventory().addItem(item.getItem());
+                    player.updateInventory();
+                    break;
+                case "eza":
+                    CustomItem item2 = new CustomItem("Burning Wand", null, Material.BLAZE_ROD, main.getItemRegistry());
+                    item2.generateItem(2);
+                    player.getInventory().addItem(item2.getItem());
                     player.updateInventory();
                 default:
             }

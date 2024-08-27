@@ -44,15 +44,47 @@ public class CustomItem extends StatContainer implements Cloneable{
         return item;
     }
 
-    public void generateItem(){
+    public void generateItem(int rarity){
         item = new ItemStack(type);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(ChatColor.RESET+""+ChatColor.GOLD+name);
+        String type;
+        switch(rarity){
+            case 5:
+
+                meta.setDisplayName(ChatColor.RESET+""+ChatColor.GOLD+name);
+                type = (ChatColor.GOLD+"§lLegendary");
+                break;
+            case 4:
+                meta.setDisplayName(ChatColor.RESET+""+ChatColor.LIGHT_PURPLE+name);
+                type = (ChatColor.LIGHT_PURPLE+"§lEpic");
+                break;
+            case 3:
+                meta.setDisplayName(ChatColor.RESET+""+ChatColor.AQUA+name);
+                type = (ChatColor.AQUA+"§lRare");
+                break;
+            case 2:
+                meta.setDisplayName(ChatColor.RESET+""+ChatColor.GREEN+name);
+                type = (ChatColor.GREEN+"§lUncommon");
+                break;
+            case 1:
+            default:
+                meta.setDisplayName(ChatColor.RESET+""+ChatColor.GRAY+name);
+                type = (ChatColor.GRAY+"§lCommon");
+                break;
+
+        }
         List<String> lore = new ArrayList<>();
         meta.setUnbreakable(true);
+        meta.setMaxStackSize(1);
         meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
         HashMap<TYPE, Integer> stats = toHashMap();
         stats.forEach((t, i) -> lore.add(ChatColor.RESET+t.toString()+": "+i));
+        lore.add("");
+        if(description != null){
+            lore.add(ChatColor.GRAY+description);
+            lore.add("");
+        }
+        lore.add(type);
         meta.setLore(lore);
         item.setItemMeta(meta);
 
