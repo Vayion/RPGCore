@@ -1,5 +1,6 @@
 package de.vayion.rpgcore.items;
 
+import de.vayion.rpgcore.RPGCore;
 import net.kyori.adventure.text.Component;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CustomItem extends StatContainer {
+public class CustomItem extends StatContainer implements Cloneable{
     private String id;
     private Material type;
     private String name;
@@ -27,11 +28,14 @@ public class CustomItem extends StatContainer {
         return null;
     }
 
-    public CustomItem(String name, String description, Material type){
+    public ItemRegistry registry;
+
+    public CustomItem(String name, String description, Material type, ItemRegistry reg){
         super();
         this.name = name;
         this.description = description;
         this.type = type;
+        registry = reg;
     }
 
     private ItemStack item;
@@ -53,7 +57,17 @@ public class CustomItem extends StatContainer {
         item.setItemMeta(meta);
 
 
+
+        //just put at bottom
+        registry.add(item, this);
     }
 
 
+
+    //TODO make cloneable to avoid changed CustomItems to be represented by weaker ItemStacks
+    @Override
+    public CustomItem clone() {
+        CustomItem output = new CustomItem(name, description, type, registry);
+        return null;
+    }
 }

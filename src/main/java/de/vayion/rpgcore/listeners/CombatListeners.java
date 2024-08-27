@@ -21,20 +21,25 @@ public class CombatListeners implements Listener{
     public void damageEvent(EntityDamageByEntityEvent event) {
         event.setDamage(0D);
         EntityWrapper damager;
+        LivingEntity damagerEntity;
         if(event.getDamager() instanceof LivingEntity) {
-            damager = main.getEntityContainer().getWrapper((LivingEntity) event.getDamager());
+            damagerEntity = (LivingEntity) event.getDamager();
+            damager = main.getEntityContainer().getWrapper(damagerEntity);
         }
         else if(event.getDamager() instanceof Projectile&&((Projectile)event.getDamager()).getShooter() instanceof LivingEntity) {
-            damager = main.getEntityContainer().getWrapper((LivingEntity)((Projectile)event.getDamager()).getShooter());
+            damagerEntity = (LivingEntity)((Projectile)event.getDamager()).getShooter();
+            damager = main.getEntityContainer().getWrapper(damagerEntity);
         }
         else {return;}
-        if(damager == null) {return;}
+        if(damager == null) {damagerEntity.setHealth(0);event.setCancelled(true);return;}
         EntityWrapper defender;
         if(event.getEntity() instanceof LivingEntity) {
-            defender = main.getEntityContainer().getWrapper((LivingEntity) event.getEntity());
+            LivingEntity defenderEntity = (LivingEntity) event.getEntity();
+            defender = main.getEntityContainer().getWrapper(defenderEntity);
+            if(defender == null) {defenderEntity.setHealth(0);event.setCancelled(true);return;}
         }
-        else {return;}
-        if(defender == null) {return;}
+        else {event.setCancelled(true);return;}
+
         defender.damage(damager.getDamage(), damager.getPiercing());
         Bukkit.broadcastMessage("Stats of the Battle\n "
                 + "Defender:\n"

@@ -74,7 +74,7 @@ public class DebugCmd implements CommandExecutor {
                     } break;
                 case "summonzombie":
                     LivingEntity zombie = (LivingEntity)player.getWorld().spawnEntity(player.getLocation(), EntityType.ZOMBIE);
-                    EntityWrapper zombieWrap = new EntityWrapper(zombie);
+                    EntityWrapper zombieWrap = new EntityWrapper(zombie, main);
                     zombieWrap.setMaxhealth(200);
                     zombieWrap.setHealth(200);
                     zombieWrap.setDefense(50);
@@ -82,7 +82,7 @@ public class DebugCmd implements CommandExecutor {
                     main.getEntityContainer().add(zombieWrap);
                     break;
                 case "debugsword":
-                    CustomItem item = new CustomItem("End Sword", "Eza, hop onto this project ong skibidi", Material.DIAMOND_SWORD);
+                    CustomItem item = new CustomItem("End Sword", "Eza, hop onto this project ong skibidi", Material.DIAMOND_SWORD, main.getItemRegistry());
                     item.setDamage(100);
                     item.setPiercing(50);
                     item.setDefense(30);

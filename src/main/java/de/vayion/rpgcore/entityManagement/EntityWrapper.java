@@ -1,18 +1,20 @@
 package de.vayion.rpgcore.entityManagement;
 
+import de.vayion.rpgcore.RPGCore;
 import org.bukkit.entity.LivingEntity;
 
 import de.vayion.rpgcore.stats.StatContainer;
 
 public class EntityWrapper extends StatContainer {
 
-    private final LivingEntity wrapped;
-
+    protected final LivingEntity wrapped;
+    protected RPGCore main;
     private EntityWrapper() {
         wrapped = null;
     }
 
-    public EntityWrapper(LivingEntity entity) {
+    public EntityWrapper(LivingEntity entity, RPGCore main) {
+        this.main = main;
         this.wrapped = entity;
         maxHealth = 200;
         setHealth(maxHealth);

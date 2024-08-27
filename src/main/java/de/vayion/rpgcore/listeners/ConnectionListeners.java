@@ -17,7 +17,7 @@ public class ConnectionListeners implements Listener {
     }
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
-        PlayerWrapper p = new PlayerWrapper(e.getPlayer(), main.getPlayerContainer());
+        PlayerWrapper p = new PlayerWrapper(e.getPlayer(), main, main.getPlayerContainer());
         main.getPlayerContainer().add(p);
         main.getEntityContainer().add(p);
     }
