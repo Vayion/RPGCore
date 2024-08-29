@@ -1,5 +1,7 @@
 package de.vayion.rpgcore.stats;
 
+import de.vayion.rpgcore.entityManagement.EntityType;
+
 import java.util.HashMap;
 
 public abstract class StatContainer {
@@ -202,5 +204,36 @@ public abstract class StatContainer {
         }
 
         return output;
+    }
+
+    public void fromHashMap(HashMap<TYPE, Integer> stats){
+        //Health, Defense, Speed, Armor, Piercing, Mana, Rejuvenate, Damage, Focus
+        if(stats.containsKey(TYPE.Health)){
+            maxHealth = stats.get(TYPE.Health);
+        }
+        if(stats.containsKey(TYPE.Defense)){
+            defense = stats.get(TYPE.Defense);
+        }
+        if(stats.containsKey(TYPE.Speed)){
+            speed = stats.get(TYPE.Speed);
+        }
+        if(stats.containsKey(TYPE.Armor)){
+            armor = stats.get(TYPE.Armor);
+        }
+        if(stats.containsKey(TYPE.Armor)){
+            armor = stats.get(TYPE.Armor);
+        }
+        if(stats.containsKey(TYPE.Mana)){
+            mana = stats.get(TYPE.Mana);
+        }
+        if(stats.containsKey(TYPE.Rejuvenate)){
+            rejuvenate = stats.get(TYPE.Rejuvenate);
+        }
+        if(stats.containsKey(TYPE.Damage)){
+            damage = stats.get(TYPE.Damage);
+        }
+        if(stats.containsKey(TYPE.Focus)){
+            focus = stats.get(TYPE.Focus);
+        }
     }
 }
