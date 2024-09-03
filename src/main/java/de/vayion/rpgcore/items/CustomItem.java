@@ -49,27 +49,30 @@ public class CustomItem extends StatContainer implements Cloneable{
         ItemMeta meta = item.getItemMeta();
         String type;
         switch(rarity){
+            case 6:
+                meta.setDisplayName(ChatColor.RESET+""+ChatColor.RED+name);
+                type = (ChatColor.RED+"§lBURNT");
+                break;
             case 5:
-
                 meta.setDisplayName(ChatColor.RESET+""+ChatColor.GOLD+name);
-                type = (ChatColor.GOLD+"§lLegendary");
+                type = (ChatColor.GOLD+"§lWELL-DONE");
                 break;
             case 4:
                 meta.setDisplayName(ChatColor.RESET+""+ChatColor.LIGHT_PURPLE+name);
-                type = (ChatColor.LIGHT_PURPLE+"§lEpic");
+                type = (ChatColor.LIGHT_PURPLE+"§lMEDIUM-WELL");
                 break;
             case 3:
                 meta.setDisplayName(ChatColor.RESET+""+ChatColor.AQUA+name);
-                type = (ChatColor.AQUA+"§lRare");
+                type = (ChatColor.AQUA+"§lMEDIUM");
                 break;
             case 2:
                 meta.setDisplayName(ChatColor.RESET+""+ChatColor.GREEN+name);
-                type = (ChatColor.GREEN+"§lUncommon");
+                type = (ChatColor.GREEN+"§lMEDIUM-RARE");
                 break;
             case 1:
             default:
-                meta.setDisplayName(ChatColor.RESET+""+ChatColor.GRAY+name);
-                type = (ChatColor.GRAY+"§lCommon");
+                meta.setDisplayName(ChatColor.RESET+""+ChatColor.WHITE+name);
+                type = (ChatColor.WHITE+"§lRARE");
                 break;
 
         }
@@ -78,7 +81,7 @@ public class CustomItem extends StatContainer implements Cloneable{
         meta.setMaxStackSize(1);
         meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
         HashMap<TYPE, Integer> stats = toHashMap();
-        stats.forEach((t, i) -> lore.add(ChatColor.RESET+t.toString()+": "+i));
+        stats.forEach((t, i) -> lore.add(ChatColor.RESET+t.toString()+" "+i));
         lore.add("");
         if(description != null){
             lore.add(ChatColor.GRAY+description);

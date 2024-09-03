@@ -1,6 +1,8 @@
 package de.vayion.rpgcore.listeners;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
@@ -9,6 +11,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import de.vayion.rpgcore.RPGCore;
 import de.vayion.rpgcore.entityManagement.EntityWrapper;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class CombatListeners implements Listener{
     private RPGCore main;
@@ -52,5 +56,15 @@ public class CombatListeners implements Listener{
                 + "Damage Modifier: "+
                 (Double.max((8D-(Math.log((21D/69)*(defender.getDefense()+(69D/21)))/Math.log(2)))/8D,0.01D)*(defender.getArmor()<=damager.getPiercing()?1D:0.5D)));
 
+    }
+
+    @EventHandler
+    public void entityDeath(EntityDeathEvent event){
+        event.setDroppedExp(0);
+        if(event.getEntityType() == EntityType.ZOMBIE){
+            event.getDrops().add(ItemStack.of(Material.BLAZE_ROD));
+        }
+        //event.getDrops().removeAll();
+        //event.getDrops().add();
     }
 }

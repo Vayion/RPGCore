@@ -92,7 +92,13 @@ public class DebugCmd implements CommandExecutor {
                     break;
                 case "eza":
                     CustomItem item2 = new CustomItem("Burning Wand", null, Material.BLAZE_ROD, main.getItemRegistry());
-                    item2.generateItem(2);
+                    if(args.length==2) {
+                        try {
+                            item2.generateItem(Integer.parseInt(args[1]));
+                        }
+                        catch(IllegalFormatException e) {player.sendMessage("NaN exception");}
+                    }
+                    else item2.generateItem(1);
                     player.getInventory().addItem(item2.getItem());
                     player.updateInventory();
                 default:
@@ -102,5 +108,16 @@ public class DebugCmd implements CommandExecutor {
             sender.sendMessage("Must execute this as a player.");
         }
         return false;
+    }
+
+    //Testing plz delete this later
+    public void customItem(String[] args, Player player) {
+        CustomItem item = new CustomItem("Burning Wand", null, Material.BLAZE_ROD, main.getItemRegistry());
+        if(args.length==2) {
+            try {
+                item.generateItem(Integer.parseInt(args[1]));
+            }
+            catch(IllegalFormatException e) {player.sendMessage("NaN exception");}
+        }
     }
 }
