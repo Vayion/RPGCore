@@ -10,6 +10,7 @@ import de.vayion.rpgcore.playerManagement.PlayerWrapper;
 
 public class EntityContainer {
     private HashMap<LivingEntity, EntityWrapper> container;
+    private HashMap<String, EntityType> types;
     private RPGCore main;
     public EntityContainer(RPGCore main) {
         this.main = main;

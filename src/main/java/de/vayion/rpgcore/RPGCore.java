@@ -1,5 +1,6 @@
 package de.vayion.rpgcore;
 
+import de.vayion.rpgcore.entityManagement.EntityType;
 import de.vayion.rpgcore.items.ItemRegistry;
 import org.bukkit.entity.Item;
 import org.bukkit.plugin.java.JavaPlugin;
